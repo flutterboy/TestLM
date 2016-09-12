@@ -7,11 +7,6 @@ public final class LmUtils {
 
 	private LmUtils(){}
 	
-	public static void main(String[] args) {
-		Double d = 1.499;
-		System.out.println(roundUp05(d));
-	}
-	
 	public static Double roundUp05(Double number){
 		Double result = Math.round(number * 100) / 100.0;
 		
