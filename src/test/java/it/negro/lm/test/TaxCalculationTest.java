@@ -55,7 +55,7 @@ public class TaxCalculationTest {
 		assertEquals(32.19, ps.getItems().get(0).getFinalPrice(), 0.01);
 		assertEquals(20.89, ps.getItems().get(1).getFinalPrice(), 0.01);
 		assertEquals(9.75, ps.getItems().get(2).getFinalPrice(), 0.01);
-		assertEquals(11.85, ps.getItems().get(2).getFinalPrice(), 0.01);
+		assertEquals(11.85, ps.getItems().get(3).getFinalPrice(), 0.01);
 		assertEquals(6.70, ps.getTaxesAmount(), 0.0);
 		assertEquals(64.78, ps.getAmount(), 0.1);
 	}
