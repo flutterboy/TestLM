@@ -1,0 +1,56 @@
+[
+	{
+		"id": 1,
+		"name": "imported bottle of perfume",
+		"nominalPrice": 27.99,
+		"imported": true,
+		"quantity": 1,
+		"category": {
+						"id": 6,
+						"name": "Generic",
+						"importTaxRate": 5,
+						"saleTaxRate": 10
+					}
+	},
+	{
+		"id": 2,
+		"name": "bottle of perfume",
+		"nominalPrice": 18.99,
+		"imported": false,
+		"quantity": 1,
+		"category": {
+						"id": 6,
+						"name": "Generic",
+						"importTaxRate": 5,
+						"saleTaxRate": 10
+					}
+	},
+	{
+		"id": 3,
+		"name": "packet of headache pills",
+		"nominalPrice": 9.75,
+		"imported": false,
+		"quantity": 1,
+		"category": {
+						"id": 3,
+						"name": "medical products",
+						"importTaxRate": 5,
+						"taxExempt": true,
+						"saleTaxRate": 0
+					}
+	},
+	{
+		"id": 4,
+		"name": "box of chocolates",
+		"nominalPrice": 11.25,
+		"imported": true,
+		"quantity": 1,
+		"category": {
+						"id": 2,
+						"name": "food",
+						"importTaxRate": 5,
+						"taxExempt": true,
+						"saleTaxRate": 0
+					}
+	}
+]

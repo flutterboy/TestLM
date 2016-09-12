@@ -1,0 +1,91 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://it.negro/lm/ws"
+	targetNamespace="http://negro.it/lm/ws"
+	elementFormDefault="qualified">
+	
+	<xs:element name="getCategoriesRequest">
+		<xs:complexType>
+			<xs:sequence>
+				
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="getCategoriesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="categories">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="category" maxOccurs="unbounded"
+								minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="id" type="xs:int" />
+										<xs:element name="name" type="xs:string" />
+										<xs:element name="saleTaxRate" type="xs:double" />
+										<xs:element name="importTaxRate" type="xs:double" />
+										<xs:element name="taxExempt" type="xs:boolean" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="getReceiptRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="items">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="item" maxOccurs="unbounded"
+								minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="id" type="xs:int" />
+										<xs:element name="name" type="xs:string" />
+										<xs:element name="nominalPrice" type="xs:double" />
+										<xs:element name="categoryId" type="xs:int" />
+										<xs:element name="imported" type="xs:boolean" />
+										<xs:element name="quantity" type="xs:int" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="getReceiptResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="items">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="item" maxOccurs="unbounded"
+								minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="id" type="xs:int" />
+										<xs:element name="name" type="xs:string" />
+										<xs:element name="quantity" type="xs:int" />
+										<xs:element name="finalPrice" type="xs:double" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element type="xs:double" name="amount" />
+				<xs:element type="xs:double" name="taxesAmount" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

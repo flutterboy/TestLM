@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Receipt</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <script src="jquery-1.12.4.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script type="text/javascript">
+		
+    	var items = [];
+    	var itemId = 0;
+    	var categories = null;
+    
+		function loadCategories() {
+			$.ajax({
+				dataType : "json",
+				url : "categories",
+				success : function (data){
+					categories = data;
+					$.each(data, function (index, value) {
+					    $('#selectCategory').append($('<option/>', { 
+					        value: value.id,
+					        text : value.name 
+					    }));
+					});      
+				}
+			});
+		}
+		
+		function addItem(){
+			var catId = $('#selectCategory').val();
+			var cat = null;
+			$.each(categories, function(i, c){
+				if (c.id == catId){
+					cat = c;
+				}
+			});
+			var imp = $('#import').is(':checked');
+			var i = {
+						id: ++itemId, 
+						name: $('#name').val(),
+						category: cat,
+						nominalPrice: parseFloat($('#price').val()),
+						quantity: parseFloat($('#selectQuantity').val()),
+						imported: imp
+						
+					};
+			items.push(i);
+			$('#basket').append('<label>' + i.quantity + ' ' + i.name + ' ' + i.nominalPrice + '</label><br>');
+		}
+		
+		function clearBasket(){
+			$('#basket').empty();
+			items = [];
+		}
+		
+		function clearReceipt(){
+			$('#receipt').empty();
+		}
+		
+		function calculateReceipt(){
+			clearReceipt();
+			$.ajax({
+				//dataType : "json",
+				contentType: "application/json;charset=UTF-8",
+				url : "receipt",
+				data: JSON.stringify(items),
+				method: 'POST',
+				success : function(data){
+					$.each(data.items, function(index, item){
+						$('#receipt').append('<label>' + item.quantity + ' ' + item.name + ' ' + item.finalPrice + '</label><br>');
+					});
+					$('#receipt').append('<label>SALES TAX: ' + data.taxesAmount + '</label><br>');
+					$('#receipt').append('<label>TOTAL: ' + data.amount + '</label>');
+				},
+				error: function (err){
+					alert(err);
+				}
+			});
+		}
+		
+		$(document).ready(loadCategories);
+	</script>
+  </head>
+  <body>
+    <h3>New Item</h3>
+    <form id="form" >
+		<label>Category:</label>
+		<select id="selectCategory">
+	    </select>
+	    <br>
+	    <label>Item Name:</label>
+		<input type="text" id="name" />  
+		<br>
+		<label>Nominal Price:</label>
+		<input type="text" id="price" />
+		<label>(ex. 34.1234)</label>
+		<br>
+		<label>Import:</label>
+		<input type="checkbox" id="import" />
+		<br>
+		<label>Quantity:</label>
+		<select id="selectQuantity">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+	    </select>
+	    <br>
+    </form>
+    <div>
+    	<input type="button" onclick="addItem()" value="add item" />
+    	<input type="button" onclick="calculateReceipt()" value="calculate" />
+    	<input type="button" onclick="clearBasket()" value="Clear Basket" />
+    	<input type="button" onclick="clearReceipt()" value="Clear Receipt" />
+    </div>
+    <br>
+    <h3>Basket</h3>
+    <div id="basket">
+    </div>
+    
+    <br>
+    <h3>Receipt</h3>
+    <div id="receipt">
+    </div>
+    
+  </body>
+</html>

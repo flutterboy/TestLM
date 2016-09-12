@@ -1,0 +1,29 @@
+[
+	{
+		"id": 1,
+		"name": "imported box of chocolates",
+		"nominalPrice": 10.00,
+		"imported": true,
+		"quantity": 1,
+		"category": {
+						"id": 2,
+						"name": "food",
+						"importTaxRate": 5,
+						"taxExempt": true,
+						"saleTaxRate": 0
+					}
+	},
+	{
+		"id": 2,
+		"name": "imported bottle of perfume",
+		"nominalPrice": 47.50,
+		"imported": true,
+		"quantity": 1,
+		"category": {
+						"id": 6,
+						"name": "Generic",
+						"importTaxRate": 5,
+						"saleTaxRate": 10
+					}
+	}
+]
