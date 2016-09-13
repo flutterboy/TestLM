@@ -15,9 +15,9 @@ import it.negro.lm.entity.Receipt;
 import it.negro.lm.service.CategoryService;
 import it.negro.lm.service.ReceiptService;
 import it.negro.lm.ws.GetCategoriesRequest;
-import it.negro.lm.ws.GetCategoryResponse;
-import it.negro.lm.ws.GetCategoryResponse.Categories;
-import it.negro.lm.ws.GetCategoryResponse.Categories.Category;
+import it.negro.lm.ws.GetCategoriesResponse;
+import it.negro.lm.ws.GetCategoriesResponse.Categories;
+import it.negro.lm.ws.GetCategoriesResponse.Categories.Category;
 import it.negro.lm.ws.GetReceiptRequest;
 import it.negro.lm.ws.GetReceiptResponse;
 
@@ -70,8 +70,8 @@ public class LmEndpoint {
 	
 	@PayloadRoot(namespace = "http://negro.it/lm/ws", localPart = "getCategoryRequest")
 	@ResponsePayload
-	public GetCategoryResponse getReceipt(@RequestPayload GetCategoriesRequest request) {
-		GetCategoryResponse response = new GetCategoryResponse();
+	public GetCategoriesResponse getReceipt(@RequestPayload GetCategoriesRequest request) {
+		GetCategoriesResponse response = new GetCategoriesResponse();
 		List<ItemCategory> categories = categoryService.getAll();
 		Categories wsCategories = new Categories();
 		categories.forEach(c -> {
