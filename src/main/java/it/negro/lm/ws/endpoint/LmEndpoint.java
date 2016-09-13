@@ -68,9 +68,9 @@ public class LmEndpoint {
 		return response;
 	}
 	
-	@PayloadRoot(namespace = "http://negro.it/lm/ws", localPart = "getCategoryRequest")
+	@PayloadRoot(namespace = "http://negro.it/lm/ws", localPart = "getCategoriesRequest")
 	@ResponsePayload
-	public GetCategoriesResponse getReceipt(@RequestPayload GetCategoriesRequest request) {
+	public GetCategoriesResponse getCategories(@RequestPayload GetCategoriesRequest request) {
 		GetCategoriesResponse response = new GetCategoriesResponse();
 		List<ItemCategory> categories = categoryService.getAll();
 		Categories wsCategories = new Categories();
